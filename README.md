@@ -1,6 +1,7 @@
 
 ## Build a basic version of PayTM like Payment App
 
+This project aims to replicate the basic functionality of PayTM, allowing users to perform transactions, view their account balance, and interact with other users.
 
 ## Getting Started
 To get started with the PayTM Clone project, follow these steps:
