@@ -19,10 +19,10 @@ JWT_SECRET = your-jwt-secret
 Install Dependencies: Install dependencies in the frontend and backend folders using npm or yarn:
 
 ```bash
-  cd frontend
-  npm install
-  cd ../backend
-  npm install
+cd frontend
+npm install
+cd ../backend
+npm install
 ```
 
 Start the Backend Server: In the backend folder, start the development server using npm:
