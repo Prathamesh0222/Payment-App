@@ -2,7 +2,7 @@
 ## Build a basic version of PayTM like Payment App
 
 
-##Getting Started
+## Getting Started
 To get started with the PayTM Clone project, follow these steps:
 
 Clone the Repository: Clone the repository from GitHub:
