@@ -9,7 +9,7 @@ To get started with the PayTM Clone project, follow these steps:
 Clone the Repository: Clone the repository from GitHub:
 
 ```bash
-https://github.com/Prathamesh0222/Payment-App.git
+git clone https://github.com/Prathamesh0222/Payment-App.git
 ```
 
 Set Environment Variables: Navigate to the frontend and backend folders and add necessary environment variables. You may need to create a .env file and configure it with required variables: In the backend/.env file:
