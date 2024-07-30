@@ -115,6 +115,24 @@ userRouter.put("/",authMiddleware,async(req,res)=>{
 
 })
 
+userRouter.get("/name",authMiddleware, async (req,res)=>{
+    try {
+        if (!req.userId) {
+            return res.status(400).json({ message: "User ID is missing" });
+        }
+        const user = await User.findById(req.userId);
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+        res.json({
+            firstName: user.firstName,
+        });
+    } catch (error) {
+        console.error("Error fetching user data:", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+})
+
 
 userRouter.get("/bulk",async (req, res) => {
     const filter = req.query.filter || "";
@@ -141,7 +159,24 @@ userRouter.get("/bulk",async (req, res) => {
     })
 })
 
-
+userRouter.put("/profile",async(req,res)=>{
+    const {firstName, lastName} = req.body;
+    const userId = req.userId;
+    const response = await User.updateOne({
+        _id: userId
+    },{
+        $set:{firstName,
+        lastName}
+    })
+    if(response.nModified === 0){
+        return res.status(411).json({
+            message: "Error while updating"
+        })
+    }
+    res.json({
+        message: "Updated successfully"
+    })
+})
 
 
 module.exports = userRouter ;
