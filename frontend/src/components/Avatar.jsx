@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import Dropdown from "./Dropdown";
 import axios from "axios";
+import { useFetchUser } from "../hooks/useFetchUser";
 
 const Avatar = ({ size }) => {
   const [open, setOpen] = useState(false);
-  const [firstName, setFirstName] = useState("");
   const dropdownRef = useRef(null);
+  const firstName = useFetchUser();
 
   const handleClinkOutside = (event) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -20,21 +21,7 @@ const Avatar = ({ size }) => {
     };
   }, []);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("http://localhost:3000/api/v1/user/name", {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        });
-        setFirstName(response.data.firstName);
-      } catch (error) {
-        console.error("Error fetching user data:", error);
-      }
-    };
-    fetchData();
-  }, []);
+ 
 
   return (
     <div ref={dropdownRef}>
