@@ -7,6 +7,9 @@ const Dropdown = () => {
     localStorage.removeItem("token");
     Navigate("/signin")
   }
+  const handleProfile = () => {
+    Navigate("/profile");
+    }
 
     const Menu = ["Profile","Logout"]
   return (
@@ -14,7 +17,7 @@ const Dropdown = () => {
     <div className='border rounded-md text-[14px] font-semibold p-2'>
     {
         Menu.map((menu,index)=>{
-            return <div className='rounded-lg p-2 hover:bg-gray-500' key={index} onClick={menu === 'Logout' ? handleLogout : null } >{menu}</div>
+            return <div className='rounded-lg p-2 hover:bg-gray-500 cursor-pointer' key={index} onClick={menu === 'Logout' ? handleLogout : handleProfile } >{menu}</div>
         })
     }
     </div>
