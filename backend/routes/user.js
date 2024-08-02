@@ -3,7 +3,6 @@ const z = require("zod");
 const userRouter = express.Router();
 const jwt = require("jsonwebtoken");
 const { User, Account } = require("../db");
-const JWT_SECRET = require("../config.js");
 const { authMiddleware } = require("../middleware");
 
 const signupBody = z.object({
@@ -50,7 +49,7 @@ userRouter.post("/signup",async(req,res)=>{
 
     const token = jwt.sign({
         userId
-    },JWT_SECRET);
+    },process.env.JWT_SECRET || "");
 
     res.json({
         message: "User created successfully",
@@ -80,7 +79,7 @@ userRouter.get("/signin",async(req,res)=>{
     if(user){
         const token = jwt.sign({
             userId: user._id
-        },JWT_SECRET);
+        },process.env.JWT_SECRET || "");
 
         res.json({
             token: token
@@ -173,8 +172,12 @@ userRouter.put("/profile",async(req,res)=>{
             message: "Error while updating"
         })
     }
+
+    const updatedUser = await User.findById(userId);
+
     res.json({
-        message: "Updated successfully"
+        message: "Updated successfully",
+        updatedUser
     })
 })
 
